@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var setRouter = require('./routes/set');
 
+const history = require('connect-history-api-fallback');
+
 var app = express();
 
 // view engine setup
@@ -25,6 +27,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/set', setRouter);
 app.use('/api', require('./routes/api'));
+app.use(history());
 app.use(express.static(path.join(__dirname, 'fe', 'dist')));
 
 // catch 404 and forward to error handler
