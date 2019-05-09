@@ -99,10 +99,6 @@ export default {
         to: {
           path: '/about'
         }
-      },
-      {
-        icon: 'bubble_chart',
-        title: 'Inspire'
       }],
       miniVariant: false,
       right: true,
