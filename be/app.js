@@ -20,12 +20,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'fe', 'dist')));
+// app.use(express.static(path.join(__dirname, 'fe', 'dist')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/set', setRouter);
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
+// app.use('/set', setRouter);
+
 app.use('/api', require('./routes/api'));
 app.use(history());
 app.use(express.static(path.join(__dirname, 'fe', 'dist')));

@@ -1,46 +1,64 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <h1>{{title}}</h1>
-    <v-btn :color="btnColor" @click="test">Success</v-btn>
-    <v-chip v-for="chip in chips" :color="chip.cl" @click="chipTest">{{chip.name}}</v-chip>
+  <div>
+    <v-btn @click="test">test</v-btn>
+    <v-container grid-list-md text-xs-center>
+      <v-layout row wrap>
+        <v-flex xs6 sm4 v-for="user in cards" :key="user.name">
+          <v-card>
+            <v-img
+              :src="user.src"
+              height="200px"
+            >
+              <v-container
+                fill-height
+                fluid
+                pa-2
+              >
+                <v-layout fill-height>
+                  <v-flex xs12 align-end flexbox>
+                    <span class="headline white--text" v-text="user.name"></span>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-img>
+            <!-- <v-card-title>이름: {{user.name}}</v-card-title> -->
+            <v-card-text>나이: {{user.age}}</v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn icon>
+                <v-icon>favorite</v-icon>
+              </v-btn>
+              <v-btn icon>
+                <v-icon>bookmark</v-icon>
+              </v-btn>
+              <v-btn icon>
+                <v-icon>share</v-icon>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </div>
 </template>
+
 <script>
-  export default {
-    name: 'default',
-    data() {
-      return {
-        title: 'park jun woo',
-        btnColor: 'info',
-        chips: [
-          {
-            cl: 'primary',
-            name: 'abc'
-          },
-          {
-            cl: 'red',
-            name: 'def'
-          },
-          {
-            cl: 'green',
-            name: 'ghi'
-          }
-        ]
+export default {
+  name: 'help',
+  data () {
+    return {
+      cards: []
+    }
+  },
+  methods: {
+    test () {
+      const user = {
+        name: `memi ${Math.random()}`,
+        src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg'
       }
-    },
-    methods: {
-      test() {
-        console.log("test is done!");
-        this.title='nnnn',
-        this.btnColor='warning'
-      },
-      chipTest() {
-        console.log("chip is clicked!");
-        // this.chips.name = 123;
-      }
+      user.age = 11
+      this.cards.push(user)
     }
   }
+}
 </script>
-<style scoped>
-</style>

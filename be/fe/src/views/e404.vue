@@ -1,3 +1,3 @@
 <template>
-  <div>그런 페이지 없어요~</div>
+    <div>존재하지 않는 페이지입니다.</div>
 </template>

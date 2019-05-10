@@ -15,10 +15,10 @@
 
       <v-flex mb-4>
         <h1 class="display-2 font-weight-bold mb-3">
-          안녕하세요?
+          Welcome to Vuetify
         </h1>
         <p class="subheading font-weight-regular">
-          뷰티파이 공부!
+          For help and collaboration with other Vuetify developers,
           <br>please join our online
           <a href="https://community.vuetifyjs.com" target="_blank">Discord Community</a>
         </p>
