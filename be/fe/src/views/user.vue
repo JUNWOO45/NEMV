@@ -1,46 +1,101 @@
 <template>
-    <div>
-        <v-btn @click="test">btn</v-btn>
-        <v-progress-circular
-        :size="50"
+    <v-card>
+    <v-card-text>
+      <v-container fluid>
+        <v-layout row wrap>
+          <v-flex xs12 sm3>
+            <v-checkbox
+              v-model="x"
+              label="Left"
+              value="left"
+            ></v-checkbox>
+          </v-flex>
+
+          <v-flex xs6 sm3>
+            <v-checkbox
+              v-model="x"
+              label="Right"
+              value="right"
+            ></v-checkbox>
+          </v-flex>
+
+          <v-flex xs6 sm3>
+            <v-checkbox
+              v-model="y"
+              label="Top"
+              value="top"
+            ></v-checkbox>
+          </v-flex>
+
+          <v-flex xs6 sm3>
+            <v-checkbox
+              v-model="y"
+              label="Bottom"
+              value="bottom"
+            ></v-checkbox>
+          </v-flex>
+
+          <v-flex xs12 sm4 offset-sm4>
+            <v-text-field
+              v-model="text"
+              label="Text"
+              type="text"
+            ></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 sm4>
+            <v-text-field
+              v-model.number="timeout"
+              label="Timeout"
+              type="number"
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+
+      </v-container>
+      <v-btn
+        block
         color="primary"
-        indeterminate
-        ></v-progress-circular>
-        <div class="text-xs-center">
-            <v-rating v-model="rating"></v-rating>
-        </div>
-    </div>
-    
+        dark
+        @click="snackbar = true"
+      >
+        Show Snackbar
+      </v-btn>
+    </v-card-text>
+
+    <v-snackbar
+      v-model="snackbar"
+      :bottom="y === 'bottom'"
+      :left="x === 'left'"
+      :multi-line="mode === 'multi-line'"
+      :right="x === 'right'"
+      :timeout="timeIsRunningOut"
+      :top="y === 'top'"
+      :vertical="mode === 'vertical'"
+    >
+      {{ text }}
+      <v-btn
+        color="pink"
+        flat
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
+  </v-card>
 </template>
 
 <script>
     export default {
-        data () {
-            return {
-                lists: [
-                    {
-                        title: "강릉가는길",
-                        content: "우리는 지금 강릉간다"
-                    },
-                    {
-                        title: "가온이가 주도했다.",
-                        content: "대단한 임산부다..!"
-                    },
-                    {
-                        title: "축복이도 함께간다.",
-                        content: "3명의 두번째 여행이다."
-                    },
-                ],
-                rating: 3
-            }
-        },
-        methods: {
-            test() {
-                this.rating += 1
-            },
-            btnClicked() {
-                this.cycleTest = !this.cycleTest
-            }
-        }
+    data () {
+      return {
+        snackbar: false,
+        y: 'top',
+        x: null,
+        mode: '',
+        timeIsRunningOut: 6000,
+        text: 'junwoo\'s bless! gaon\'s bless!'
+      }
+    }
   }
 </script>
