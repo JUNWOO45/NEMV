@@ -64,7 +64,6 @@ export default {
   mounted () {
     const a = { a: 1, b: 2};
     this.ta = JSON.stringify(this.$vuetify.breakpoint);
-    console.log("dddeee");
   }
 }
 </script>
