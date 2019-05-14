@@ -2,10 +2,10 @@
     <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
             <v-flex xs12 v-for="user in users">
-                {{ user. name }}의 나이는 {{ user. age }}
+                {{ user.name }}의 나이는 {{ user.age }}
             </v-flex>
         </v-layout>
-  </v-container>
+    </v-container>
 </template>
 
 <script>
@@ -25,7 +25,7 @@
             })
             .catch((e) => {
                 console.log("error.message : ", e.message);
-            })
+            });
+        }
     }
-  }
 </script>
