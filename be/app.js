@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
+const mongoose = require('mongoose');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -26,12 +28,10 @@ app.use(cookieParser());
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 // app.use('/set', setRouter);
-
-app.use(cors()); // api 위에서 사용하겠다고 선언
+app.use(cors());
 app.use('/api', require('./routes/api'));
 app.use(history());
 app.use(express.static(path.join(__dirname, 'fe', 'dist')));
-
 
 
 // catch 404 and forward to error handler
@@ -51,3 +51,44 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+const userSchema = new mongoose.Schema({
+  name: {type: String, default: '', unique: true, index: true},
+  age: {type: Number, default: 1}
+});
+
+const User = mongoose.model('User', userSchema);
+
+
+mongoose.connect('mongodb://localhost:27017/nemv', { useNewUrlParser: true}, (err) => {
+  if(err) {
+    return console.log(err);
+  }
+  console.log('mongoose connected!');
+
+  // User.create({ name: '하하'})
+  //   .then(r => console.log(r))
+  //   .catch(e => console.error(e));
+
+  // User.find()
+  //   .then(r => console.log(r))
+  //   .catch(e => console.error(e));
+
+  // User.updateOne({ _id: '5cdc2235b27fcdfad4973009' }, { $set: {age: 50}})
+  //   .then(r => {
+  //     console.log(r);
+  //     console.log('updated');
+  //     return User.find();
+  //   })
+  //   .then(r => console.log(r))
+  //   .then(e => console.error(e));
+User.deleteOne({_id: '5cdc2235b27fcdfad4973009'})
+  .then(r => {
+    console.log(r);
+    console.log('removed');
+    return User.find();
+  })
+  .then(r => console.log(r))
+  .catch(e => console.error(e));
+
+});

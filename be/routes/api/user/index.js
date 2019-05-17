@@ -2,19 +2,19 @@ var express = require('express');
 var createError = require('http-errors');
 var router = express.Router();
 
-const us = [
-  {
-    name: 'park',
-    age: 10
-  },
-  {
-    name: 'lee',
-    age: 9
-  }
-];
-
 router.get('/', function(req, res, next) {
-  res.send({users: us});
+  const us = [
+    {
+      name: '박준우',
+      age: 29
+    },
+    {
+      name: '이가온',
+      age: 28
+    }
+  ];
+
+  res.send({ users: us });
 });
 
 router.post('/', function(req, res, next) {
@@ -30,7 +30,7 @@ router.delete('/', function(req, res, next) {
 });
 
 router.all('*', function(req, res, next) {
-  next(createError(404, '그런 api는 없습니다만..'));
+  next(createError(404, '그런 api 없어'));
 });
 
 module.exports = router;
