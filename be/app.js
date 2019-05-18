@@ -52,12 +52,7 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-const userSchema = new mongoose.Schema({
-  name: {type: String, default: '', unique: true, index: true},
-  age: {type: Number, default: 1}
-});
-
-const User = mongoose.model('User', userSchema);
+const User = require('./models/users.js');
 
 
 mongoose.connect('mongodb://localhost:27017/nemv', { useNewUrlParser: true}, (err) => {
