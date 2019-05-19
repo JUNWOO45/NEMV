@@ -71,18 +71,18 @@
             <v-btn flat color="orange" @click="delReq">submit</v-btn>
           </v-card-actions>
         </v-card> -->
-        <v-flex xs12 v-for="u in users" :key="u._id">
+        <v-flex xs12 v-for="user in users" :key="user._id">
             <v-card>
                 <v-card-title primary-title>
                 <div>
-                    <h3 class="headline mb-0">{{u.name}}</h3>
-                    <div> {{ u.age }} </div>
+                    <h3 class="headline mb-0">{{ user.name }}</h3>
+                    <div> {{ user.age }} </div>
                 </div>
                 </v-card-title>
 
                 <v-card-actions>
-                <v-btn flat color="orange" @click="putUser(u._id)">수정</v-btn>
-                <v-btn flat color="red" @click="delUser(u._id)">삭제</v-btn>
+                <v-btn flat color="orange" @click="putDialog(user)">수정</v-btn>
+                <v-btn flat color="red" @click="delUser(user._id)">삭제</v-btn>
                 </v-card-actions>
             </v-card>
         </v-flex>
@@ -138,6 +138,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click="putUser">수정</v-btn>
           <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
           <v-btn color="blue darken-1" flat @click="postUser">Save</v-btn>
         </v-card-actions>
@@ -174,7 +175,8 @@ export default {
       userAge: 0,
       userName: '',
       snackbar: false,
-      sbMsg: ''
+      sbMsg: '',
+      putId: '',
     }
   },
   mounted () {
@@ -228,6 +230,8 @@ export default {
     },
     mdUp() {
         // console.log("mdUp!!");
+        this.userName = '';
+        this.userAge = '';
         this.dialog = true;
     },
     postUser() {
@@ -253,8 +257,14 @@ export default {
                     this.pop(e.message);
                 }); 
     },
-    putUser(id) {
-        axios.put(`http://localhost:3000/api/user/${id}`, {
+    putDialog(user) {
+        this.putId = user._id;
+        this.dialog = true;
+        this.userName = user.name;
+        this.userAge = user.age;
+    },
+    putUser() {
+        axios.put(`http://localhost:3000/api/user/${this.putId}`, {
             name: this.userName, age: this.userAge
         })
                 .then((r) => {
