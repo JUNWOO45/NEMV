@@ -2,7 +2,7 @@
   <v-container>
     <v-layout>
       <v-flex>
-        주누와 가오니와 추뽀기
+        주누와 가오니와 추뽀기0523
       </v-flex>
     </v-layout>
   </v-container>

@@ -28,7 +28,10 @@ app.use(cookieParser());
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 // app.use('/set', setRouter);
-app.use(cors());
+if(process.env.NODE_ENV !== 'production') {
+  app.use(cors());
+}
+
 app.use('/api', require('./routes/api'));
 app.use(history());
 app.use(express.static(path.join(__dirname, 'fe', 'dist')));
@@ -77,13 +80,7 @@ mongoose.connect('mongodb://localhost:27017/nemv', { useNewUrlParser: true}, (er
   //   })
   //   .then(r => console.log(r))
   //   .then(e => console.error(e));
-User.deleteOne({_id: '5cdc2235b27fcdfad4973009'})
-  .then(r => {
-    console.log(r);
-    console.log('removed');
-    return User.find();
-  })
-  .then(r => console.log(r))
-  .catch(e => console.error(e));
-
+// User.delet 
 });
+
+console.log("process.env.NODE_ENV : ", process.env.NODE_ENV);
