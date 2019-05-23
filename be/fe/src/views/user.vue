@@ -181,13 +181,13 @@ export default {
   },
   mounted () {
     for(let i = 10; i < 30; i++) {
-        this.userAges.push(i);
+      this.userAges.push(i);
     }
     this.getUsers();
   },
   methods: {
     getReq() {
-      axios.get('api/user', {
+      axios.get(`${this.$apiRootPath}user`, {
         user: 'getMan'
       })
         .then((r) => {
@@ -198,7 +198,7 @@ export default {
         })
     },
      postReq() {
-      axios.post('api/user', {
+      axios.post(`${this.$apiRootPath}user`, {
         name: '주누주누', age: 444 // req.body
       })
         .then((r) => {
@@ -209,7 +209,7 @@ export default {
         })
     },
     putReq() {
-      axios.put('api/user', {
+      axios.put(`${this.$apiRootPath}user`, {
         user: 'putMan'
       })
         .then((r) => {
@@ -220,7 +220,7 @@ export default {
         })
     },
     delReq() {
-      axios.delete('api/user')
+      axios.delete(`${this.$apiRootPath}user`)
         .then((r) => {
           this.delMd = JSON.stringify(r.data)
         })
@@ -229,66 +229,66 @@ export default {
         })
     },
     mdUp() {
-        // console.log("mdUp!!");
-        this.userName = '';
-        this.userAge = '';
-        this.dialog = true;
+      // console.log("mdUp!!");
+      this.userName = '';
+      this.userAge = '';
+      this.dialog = true;
     },
     postUser() {
-        axios.post('api/user', {
-            name: this.userName, age: this.userAge
+      axios.post(`${this.$apiRootPath}user`, {
+        name: this.userName, age: this.userAge
+      })
+        .then((r) => {
+          this.dialog = false;
+          this.pop('사용자 등록 완료!');
+          this.getUsers();
         })
-            .then((r) => {
-                this.dialog = false;
-                this.pop('사용자 등록 완료!');
-                this.getUsers();
-            })
-            .catch((e) => {
-                this.pop(e.message);
-            });
+        .catch((e) => {
+          this.pop(e.message);
+        });
     },
     getUsers() {
-        axios.get('api/user')
-                .then((r) => {
-                    console.log("r : ", r);
-                    this.users = r.data.users;
-                })
-                .catch((e) => {
-                    this.pop(e.message);
-                }); 
+      axios.get(`${this.$apiRootPath}user`)
+        .then((r) => {
+          console.log("r : ", r);
+          this.users = r.data.users;
+        })
+        .catch((e) => {
+          this.pop(e.message);
+        }); 
     },
     putDialog(user) {
-        this.putId = user._id;
-        this.dialog = true;
-        this.userName = user.name;
-        this.userAge = user.age;
+      this.putId = user._id;
+      this.dialog = true;
+      this.userName = user.name;
+      this.userAge = user.age;
     },
     putUser() {
-        axios.put(`api/user/${this.putId}`, {
-            name: this.userName, age: this.userAge
+      axios.put(`${this.$apiRootPath}/${this.putId}`, {
+          name: this.userName, age: this.userAge
+      })
+        .then((r) => {
+          this.dialog = false;
+          this.pop('사용자 수정 완료!');
+          this.getUsers();
         })
-                .then((r) => {
-                    this.dialog = false;
-                    this.pop('사용자 수정 완료!');
-                    this.getUsers();
-                })
-                .catch((e) => {
-                    this.pop(e.message);
-                })
+        .catch((e) => {
+          this.pop(e.message);
+        })
     },
     delUser(id) {
-        axios.delete(`api/user/${id}`)
-                .then((r) => {
-                    this.pop('사용자 삭제 완료!');
-                    this.getUsers();
-                })
-                .catch((e) => {
-                    this.pop(e.message);
-                })
+      axios.delete(`${this.$apiRootPath}/${id}`)
+        .then((r) => {
+          this.pop('사용자 삭제 완료!');
+          this.getUsers();
+        })
+        .catch((e) => {
+          this.pop(e.message);
+        })
     },
     pop(msg) {
-        this.snackbar = true;
-        this.sbMsg = msg;
+      this.snackbar = true;
+      this.sbMsg = msg;
     }
   }
 }
