@@ -21,12 +21,13 @@ module.exports = {
 
   deploy : {
     production : {
-      user : 'node',
-      host : '212.83.163.1',
+      user : 'root',
+      host : '133.186.210.91',
+      key : 'nemvKey.pem',
       ref  : 'origin/master',
-      repo : 'git@github.com:repo.git',
-      path : '/var/www/production',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
+      repo : 'git@github.com:nemv.git',
+      path : '/var/www/nemv',
+      'post-deploy' : 'yarn pm2'
     }
   }
 };
