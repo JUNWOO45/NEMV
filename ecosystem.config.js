@@ -23,9 +23,9 @@ module.exports = {
     pr : {
       user : 'root',
       host : '133.186.210.91',
-      key : 'nemvKey.pem',
+      key : '~/keys/nemvKey.pem',
       ref  : 'origin/master',
-      repo : 'git@github.com:junwoo45/nemv.git',
+      repo : 'git@github.com:junwoo45/NEMV.git',
       path : '/var/www/nemv',
       'post-deploy' : 'yarn pm2'
     }
