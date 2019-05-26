@@ -25,7 +25,7 @@ module.exports = {
       host : '133.186.210.91',
       key : 'nemvKey.pem',
       ref  : 'origin/master',
-      repo : 'git@github.com:nemv.git',
+      repo : 'git@github.com:junwoo45/nemv.git',
       path : '/var/www/nemv',
       'post-deploy' : 'yarn pm2'
     }
