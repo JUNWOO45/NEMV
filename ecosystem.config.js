@@ -20,7 +20,7 @@ module.exports = {
   }],
 
   deploy : {
-    production : {
+    pr : {
       user : 'root',
       host : '133.186.210.91',
       key : 'nemvKey.pem',
