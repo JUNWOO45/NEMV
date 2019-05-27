@@ -57,8 +57,10 @@ module.exports = app;
 
 const User = require('./models/users.js');
 
+const cfg = require('../config');
+console.log("cfg : ", cfg);
 
-mongoose.connect('mongodb://localhost:27017/nemv', { useNewUrlParser: true}, (err) => {
+mongoose.connect(cfg.dbUrl, { useNewUrlParser: true}, (err) => {
   if(err) {
     return console.log(err);
   }
@@ -82,5 +84,8 @@ mongoose.connect('mongodb://localhost:27017/nemv', { useNewUrlParser: true}, (er
   //   .then(e => console.error(e));
 // User.delet 
 });
+
+const pkg = require('../package.json');
+console.log("pkg : ", pkg);
 
 console.log("process.env.NODE_ENV : ", process.env.NODE_ENV);

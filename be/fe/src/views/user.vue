@@ -12,7 +12,6 @@
             <v-textarea v-model='getMd'>
             </v-textarea>
           </v-card-text>
-
           <v-card-actions>
             <v-btn flat color="orange" @click="getReq">submit</v-btn>
           </v-card-actions>
@@ -20,7 +19,6 @@
       </v-flex>
       <v-flex xs12 sm3>
         <v-card>
-
           <v-card-title primary-title>
             <div>
               <h3 class="headline mb-0">post</h3>
@@ -30,7 +28,6 @@
             <v-textarea v-model='postMd'>
             </v-textarea>
           </v-card-text>
-
           <v-card-actions>
             <v-btn flat color="orange" @click="postReq">submit</v-btn>
           </v-card-actions>
@@ -38,7 +35,6 @@
       </v-flex>
       <v-flex xs12 sm3>
         <v-card>
-
           <v-card-title primary-title>
             <div>
               <h3 class="headline mb-0">put</h3>
@@ -48,7 +44,6 @@
             <v-textarea v-model='putMd'>
             </v-textarea>
           </v-card-text>
-
           <v-card-actions>
             <v-btn flat color="orange" @click="putReq">submit</v-btn>
           </v-card-actions>
@@ -56,7 +51,6 @@
       </v-flex>
       <v-flex xs12 sm3>
         <v-card>
-
           <v-card-title primary-title>
             <div>
               <h3 class="headline mb-0">del</h3>
@@ -66,7 +60,6 @@
             <v-textarea v-model='delMd'>
             </v-textarea>
           </v-card-text>
-
           <v-card-actions>
             <v-btn flat color="orange" @click="delReq">submit</v-btn>
           </v-card-actions>
