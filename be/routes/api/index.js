@@ -8,7 +8,17 @@ router.all('*', function(req, res, next) {
   if(req.path === '/xxx') {
     return res.send({연습:"성공"})
   }
+  req.x = '보안인증통과'
   next();
+});
+
+router.all('*', function(req, res, next) {
+  req.x = req.x + ' 2번째 인증 또한 통과';
+  next();
+});
+
+router.all('*', function(req, res, next) {
+  res.send({ status : req.x})
 });
 
 router.use('/user', require('./user'));
