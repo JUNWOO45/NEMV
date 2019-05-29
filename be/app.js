@@ -89,3 +89,11 @@ const pkg = require('../package.json');
 console.log("pkg : ", pkg);
 
 console.log("process.env.NODE_ENV : ", process.env.NODE_ENV);
+
+var jwt = require('jsonwebtoken');
+const key = "엄청어렵고복잡한키"
+var token = jwt.sign({ id: 'junwoo', email: 'junwoo@xxx.com ' }, key);
+
+console.log("token : ", token);
+var decoded = jwt.verify(token, key);
+console.log("decoded : ", decoded) // bar
